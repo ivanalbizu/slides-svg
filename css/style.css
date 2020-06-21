@@ -1,0 +1,1425 @@
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  -webkit-appearance: button;
+}
+
+.enable-js {
+  display: none;
+  font-size: .8em;
+  margin-bottom: .8em;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  background-color: #ef4d2f;
+  color: #fff;
+  padding: 10px;
+}
+
+:root.no-js .enable-js {
+  display: block;
+}
+
+.js [data-split-word] .char {
+  color: transparent;
+}
+
+.js [data-image] {
+  visibility: hidden;
+}
+
+.js [data-image] .img {
+  visibility: hidden;
+}
+
+.js [data-translate-y] {
+  opacity: 0;
+}
+
+.js [data-translate-x] {
+  opacity: 0;
+}
+
+.js [data-fade-in] {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.active [data-split-word] .char {
+  display: inline-block;
+  color: transparent;
+  transform: translateY(-20px);
+  animation: words 200ms ease-out calc(var(--char-index) * 100ms) forwards;
+}
+
+.active [data-translate-y] {
+  animation: translateY .2s ease-in-out 0s forwards;
+}
+
+.active [data-translate-x] {
+  transform: translateX(-20px);
+  animation: translateX .6s ease-in-out 1.4s forwards;
+}
+
+.active [data-fade-in] {
+  animation: fadeIn .2s ease-in-out 3.3s forwards;
+}
+
+.active [data-fade-in] .btn path {
+  transition: d .4s ease-in-out 3.3s;
+}
+
+.active [data-fade-in] .btn--right path {
+  d: path("M 9 18 l 6 -6 l -6 -6");
+}
+
+.active [data-fade-in] .btn--left path {
+  d: path("M 15 18 l -6 -6 l 6 -6");
+}
+
+.active.reverse [data-split-word] .char {
+  color: #242424;
+  transform: translateY(0);
+  animation: wordsReverse 200ms ease-out calc(var(--char-index-reverse) * 100ms) forwards;
+}
+
+.active.reverse [data-translate-y] {
+  opacity: 1;
+  transform: translateY(0);
+  animation: translateYReverse .2s ease-in-out 1.2s forwards;
+}
+
+.active.reverse [data-translate-x] {
+  opacity: 1;
+  transform: translateX(0);
+  animation: translateXReverse .4s ease-in-out 1.2s forwards;
+}
+
+.active.reverse [data-fade-in] {
+  animation: fadeIn .2s ease-in-out 0s reverse;
+}
+
+.beethowen.active [data-image] {
+  background-color: #333333;
+  visibility: hidden;
+  animation: fillBox 0.5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+}
+
+.beethowen.active [data-image] .img {
+  visibility: visible;
+}
+
+.beethowen.active.reverse [data-image] {
+  background-color: #333333;
+  visibility: visible;
+  animation: fillBoxReverse 0.7s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0.5s forwards;
+}
+
+.beethowen.active.reverse [data-image] .img {
+  visibility: visible;
+  animation: fillBoxReverse 0.5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+}
+
+.bean.active [data-image] {
+  background-color: #333333;
+  visibility: hidden;
+  animation: fillBox 0.5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+}
+
+.bean.active [data-image] .img {
+  visibility: visible;
+}
+
+.bean.active.reverse [data-image] {
+  background-color: #333333;
+  visibility: visible;
+  animation: fillBoxReverse 0.7s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0.5s forwards;
+}
+
+.bean.active.reverse [data-image] .img {
+  visibility: visible;
+  animation: fillBoxReverse 0.5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+}
+
+.chopin.active [data-image] {
+  background-color: rgba(0, 0, 0, 0.1);
+  visibility: hidden;
+  animation: fillBox 1.1s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+}
+
+.chopin.active [data-image] .img {
+  visibility: hidden;
+  animation: fillImg 1s cubic-bezier(0.85, 0.3, 0.37, 0.94) 1.3s forwards;
+}
+
+.chopin.active.reverse [data-image] {
+  background-color: rgba(0, 0, 0, 0.1);
+  visibility: visible;
+  animation: fillBoxReverse 0.7s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0.5s forwards;
+}
+
+.chopin.active.reverse [data-image] .img {
+  visibility: visible;
+  animation: fillImgReverse 0.5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+}
+
+.elvis.active [data-image] {
+  background-color: rgba(0, 0, 0, 0.1);
+  visibility: hidden;
+  animation: fillBox 1.1s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+}
+
+.elvis.active [data-image] .img {
+  visibility: hidden;
+  animation: fillBox 1s cubic-bezier(0.85, 0.3, 0.37, 0.94) 1.3s forwards;
+}
+
+.elvis.active.reverse [data-image] {
+  background-color: rgba(0, 0, 0, 0.1);
+  visibility: visible;
+  animation: fillBoxReverse 0.7s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0.5s forwards;
+}
+
+.elvis.active.reverse [data-image] .img {
+  visibility: visible;
+  animation: fillBoxReverse 0.5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+}
+
+@keyframes fillBox {
+  0% {
+    visibility: visible;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+  100% {
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes fillBoxReverse {
+  0% {
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  100% {
+    visibility: hidden;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes fillImg {
+  0% {
+    visibility: visible;
+    clip-path: circle(0% at 50% 20%);
+  }
+  100% {
+    visibility: visible;
+    clip-path: circle(70.7% at 50% 50%);
+  }
+}
+
+@keyframes fillImgReverse {
+  0% {
+    visibility: visible;
+    clip-path: circle(70.7% at 50% 50%);
+  }
+  100% {
+    visibility: hidden;
+    clip-path: circle(0% at 50% 20%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes translateX {
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes translateXReverse {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes circle {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+    opacity: 1;
+  }
+}
+
+@keyframes words {
+  0% {
+    color: transparent;
+    transform: translateY(-20px);
+  }
+  45% {
+    transform: scaleY(1.1);
+  }
+  80% {
+    transform: translateY(2px) scaleY(0.97);
+  }
+  90% {
+    transform: scaleY(1.05);
+  }
+  96% {
+    transform: translateY(-1px) scaleY(0.98);
+  }
+  100% {
+    color: #242424;
+    transform: translateY(0) scaleY(1);
+    text-shadow: 1px 1px 0 #fff;
+  }
+}
+
+@keyframes wordsReverse {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    color: transparent;
+    transform: translateY(30px);
+    text-shadow: 0 0 0 transparent;
+  }
+}
+
+@keyframes translateY {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes translateYReverse {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@media (min-width: 576px) {
+  [data-animation] [style*="--kf-delay"] {
+    animation-delay: calc(var(--kf-delay) * 1ms);
+  }
+}
+
+.svg-bet-1 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s;
+}
+
+.beethowen .img .svg-bet-1 {
+  fill: #333333;
+}
+
+.svg-bet-2 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1s;
+}
+
+.beethowen .img .svg-bet-2 {
+  fill: #b73917;
+}
+
+.svg-bet-3 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s;
+}
+
+.beethowen .img .svg-bet-3 {
+  fill: #b73917;
+}
+
+.svg-bet-4 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2s;
+}
+
+.beethowen .img .svg-bet-4 {
+  fill: #e16d58;
+}
+
+.svg-bet-5 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s;
+}
+
+.beethowen .img .svg-bet-5 {
+  fill: #e16d58;
+}
+
+.svg-bet-6 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s;
+}
+
+.beethowen .img .svg-bet-6 {
+  fill: white;
+}
+
+.svg-bet-7 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s;
+}
+
+.beethowen .img .svg-bet-7 {
+  fill: #4d4d4d;
+}
+
+.svg-bet-8 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6s;
+}
+
+.beethowen .img .svg-bet-8 {
+  fill: white;
+}
+
+.svg-bet-9 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.7s;
+}
+
+.beethowen .img .svg-bet-9 {
+  fill: #e8b6a6;
+}
+
+.svg-bet-10 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s;
+}
+
+.beethowen .img .svg-bet-10 {
+  fill: #af7861;
+}
+
+.svg-bet-11 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9s;
+}
+
+.beethowen .img .svg-bet-11 {
+  fill: #e8b6a6;
+}
+
+.svg-bet-12 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2s;
+}
+
+.beethowen .img .svg-bet-12 {
+  fill: #c98c75;
+}
+
+.svg-bet-13 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.1s;
+}
+
+.beethowen .img .svg-bet-13 {
+  fill: #c98c75;
+}
+
+.svg-bet-14 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.2s;
+}
+
+.beethowen .img .svg-bet-14 {
+  fill: #dd4b44;
+}
+
+.svg-bet-15 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.3s;
+}
+
+.beethowen .img .svg-bet-15 {
+  fill: #e1625c;
+}
+
+.svg-bet-16 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.4s;
+}
+
+.beethowen .img .svg-bet-16 {
+  fill: #9c654f;
+}
+
+.svg-bet-17 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s;
+}
+
+.beethowen .img .svg-bet-17 {
+  fill: #9c654f;
+}
+
+.svg-bet-18 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6s;
+}
+
+.beethowen .img .svg-bet-18 {
+  fill: black;
+}
+
+.svg-bet-19 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.7s;
+}
+
+.beethowen .img .svg-bet-19 {
+  fill: white;
+}
+
+.svg-bet-20 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.8s;
+}
+
+.beethowen .img .svg-bet-20 {
+  fill: #504c60;
+}
+
+.svg-bet-21 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 2.9s;
+}
+
+.beethowen .img .svg-bet-21 {
+  fill: black;
+}
+
+.svg-bet-22 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3s;
+}
+
+.beethowen .img .svg-bet-22 {
+  fill: white;
+}
+
+.svg-bet-23 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.1s;
+}
+
+.beethowen .img .svg-bet-23 {
+  fill: #504c60;
+}
+
+.svg-bet-24 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.2s;
+}
+
+.beethowen .img .svg-bet-24 {
+  fill: #c98c75;
+}
+
+.svg-bet-25 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.3s;
+}
+
+.beethowen .img .svg-bet-25 {
+  fill: #4d4d4d;
+}
+
+.svg-bet-26 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.4s;
+}
+
+.beethowen .img .svg-bet-26 {
+  fill: #4d4d4d;
+}
+
+.svg-bet-27 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.5s;
+}
+
+.beethowen .img .svg-bet-27 {
+  fill: #9c654f;
+}
+
+.svg-bet-28 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.6s;
+}
+
+.beethowen .img .svg-bet-28 {
+  fill: #8c4f38;
+}
+
+.svg-bet-29 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.7s;
+}
+
+.beethowen .img .svg-bet-29 {
+  fill: #825442;
+}
+
+.svg-bet-30 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.8s;
+}
+
+.beethowen .img .svg-bet-30 {
+  fill: #4d4d4d;
+}
+
+.svg-bet-31 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 3.9s;
+}
+
+.beethowen .img .svg-bet-31 {
+  fill: #e16d58;
+}
+
+.svg-bet-32 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4s;
+}
+
+.beethowen .img .svg-bet-32 {
+  fill: #b73917;
+}
+
+.svg-bet-33 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.1s;
+}
+
+.beethowen .img .svg-bet-33 {
+  fill: #79231c;
+}
+
+.svg-bet-34 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.2s;
+}
+
+.beethowen .img .svg-bet-34 {
+  fill: #e16d58;
+}
+
+.svg-bet-35 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.3s;
+}
+
+.beethowen .img .svg-bet-35 {
+  fill: #e16d58;
+}
+
+.svg-bet-36 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.4s;
+}
+
+.beethowen .img .svg-bet-36 {
+  fill: #666666;
+}
+
+.svg-bet-37 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.5s;
+}
+
+.beethowen .img .svg-bet-37 {
+  fill: #999999;
+}
+
+.svg-bet-38 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.6s;
+}
+
+.beethowen .img .svg-bet-38 {
+  fill: #999999;
+}
+
+.svg-bet-39 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.7s;
+}
+
+.beethowen .img .svg-bet-39 {
+  fill: #999999;
+}
+
+.svg-bet-40 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.8s;
+}
+
+.beethowen .img .svg-bet-40 {
+  fill: #999999;
+}
+
+.svg-bet-41 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 4.9s;
+}
+
+.beethowen .img .svg-bet-41 {
+  fill: #999999;
+}
+
+.svg-bet-42 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5s;
+}
+
+.beethowen .img .svg-bet-42 {
+  fill: #999999;
+}
+
+.svg-bet-43 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.1s;
+}
+
+.beethowen .img .svg-bet-43 {
+  fill: #999999;
+}
+
+.svg-bet-44 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.2s;
+}
+
+.beethowen .img .svg-bet-44 {
+  fill: #999999;
+}
+
+.svg-bet-45 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.3s;
+}
+
+.beethowen .img .svg-bet-45 {
+  fill: #999999;
+}
+
+.svg-bet-46 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.4s;
+}
+
+.beethowen .img .svg-bet-46 {
+  fill: #999999;
+}
+
+.svg-bet-47 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.5s;
+}
+
+.beethowen .img .svg-bet-47 {
+  fill: #999999;
+}
+
+.svg-bet-48 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.6s;
+}
+
+.beethowen .img .svg-bet-48 {
+  fill: #999999;
+}
+
+.svg-bet-49 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.7s;
+}
+
+.beethowen .img .svg-bet-49 {
+  fill: #999999;
+}
+
+.svg-bet-50 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.8s;
+}
+
+.beethowen .img .svg-bet-50 {
+  fill: #999999;
+}
+
+.svg-bet-51 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 5.9s;
+}
+
+.beethowen .img .svg-bet-51 {
+  fill: #999999;
+}
+
+.svg-bet-52 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 6s;
+}
+
+.beethowen .img .svg-bet-52 {
+  fill: #999999;
+}
+
+.svg-bet-53 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 6.1s;
+}
+
+.beethowen .img .svg-bet-53 {
+  fill: #999999;
+}
+
+.svg-bet-54 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 6.2s;
+}
+
+.beethowen .img .svg-bet-54 {
+  fill: #999999;
+}
+
+.svg-bet-55 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 6.3s;
+}
+
+.beethowen .img .svg-bet-55 {
+  fill: #999999;
+}
+
+.svg-bet-56 {
+  fill: transparent;
+  transition: fill 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) 6.4s;
+}
+
+.beethowen .img .svg-bet-56 {
+  fill: #999999;
+}
+
+svg .svg-bean-1 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s;
+}
+
+.bean .img .svg-bean-1 {
+  fill: #6d6146;
+}
+
+svg .svg-bean-2 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 0.7s;
+}
+
+.bean .img .svg-bean-2 {
+  fill: black;
+}
+
+svg .svg-bean-3 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s;
+}
+
+.bean .img .svg-bean-3 {
+  fill: black;
+}
+
+svg .svg-bean-4 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s;
+}
+
+.bean .img .svg-bean-4 {
+  fill: #dfe7e9;
+}
+
+svg .svg-bean-5 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1s;
+}
+
+.bean .img .svg-bean-5 {
+  fill: #796e76;
+}
+
+svg .svg-bean-6 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s;
+}
+
+.bean .img .svg-bean-6 {
+  fill: #534b51;
+}
+
+svg .svg-bean-7 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2s;
+}
+
+.bean .img .svg-bean-7 {
+  fill: #571014;
+}
+
+svg .svg-bean-8 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s;
+}
+
+.bean .img .svg-bean-8 {
+  fill: #33090c;
+}
+
+svg .svg-bean-9 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s;
+}
+
+.bean .img .svg-bean-9 {
+  fill: #bd947b;
+}
+
+svg .svg-bean-10 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s;
+}
+
+.bean .img .svg-bean-10 {
+  fill: #965e49;
+}
+
+svg .svg-bean-11 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6s;
+}
+
+.bean .img .svg-bean-11 {
+  fill: #9b6b4e;
+}
+
+svg .svg-bean-12 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.7s;
+}
+
+.bean .img .svg-bean-12 {
+  fill: #9b6b4e;
+}
+
+svg .svg-bean-13 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s;
+}
+
+.bean .img .svg-bean-13 {
+  fill: #9b6b4e;
+}
+
+svg .svg-bean-14 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9s;
+}
+
+.bean .img .svg-bean-14 {
+  fill: #9b6b4e;
+}
+
+svg .svg-bean-15 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2s;
+}
+
+.bean .img .svg-bean-15 {
+  fill: black;
+}
+
+svg .svg-bean-16 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.1s;
+}
+
+.bean .img .svg-bean-16 {
+  fill: #9b6b4e;
+}
+
+svg .svg-bean-17 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.2s;
+}
+
+.bean .img .svg-bean-17 {
+  fill: #9b6b4e;
+}
+
+svg .svg-bean-18 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.3s;
+}
+
+.bean .img .svg-bean-18 {
+  fill: black;
+}
+
+svg .svg-bean-19 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.4s;
+}
+
+.bean .img .svg-bean-19 {
+  fill: #9b6b4e;
+}
+
+svg .svg-bean-20 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s;
+}
+
+.bean .img .svg-bean-20 {
+  fill: black;
+}
+
+svg .svg-bean-21 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6s;
+}
+
+.bean .img .svg-bean-21 {
+  fill: #b18164;
+}
+
+svg .svg-bean-22 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.7s;
+}
+
+.bean .img .svg-bean-22 {
+  fill: black;
+}
+
+svg .svg-bean-23 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.8s;
+}
+
+.bean .img .svg-bean-23 {
+  fill: black;
+}
+
+svg .svg-bean-24 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 2.9s;
+}
+
+.bean .img .svg-bean-24 {
+  fill: #dccdb5;
+}
+
+svg .svg-bean-25 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3s;
+}
+
+.bean .img .svg-bean-25 {
+  fill: black;
+}
+
+svg .svg-bean-26 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3.1s;
+}
+
+.bean .img .svg-bean-26 {
+  fill: black;
+}
+
+svg .svg-bean-27 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3.2s;
+}
+
+.bean .img .svg-bean-27 {
+  fill: #dccdb5;
+}
+
+svg .svg-bean-28 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3.3s;
+}
+
+.bean .img .svg-bean-28 {
+  fill: black;
+}
+
+svg .svg-bean-29 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3.4s;
+}
+
+.bean .img .svg-bean-29 {
+  fill: #403a22;
+}
+
+svg .svg-bean-30 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3.5s;
+}
+
+.bean .img .svg-bean-30 {
+  fill: black;
+}
+
+svg .svg-bean-31 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3.6s;
+}
+
+.bean .img .svg-bean-31 {
+  fill: #403a22;
+}
+
+svg .svg-bean-32 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3.7s;
+}
+
+.bean .img .svg-bean-32 {
+  fill: black;
+}
+
+svg .svg-bean-33 {
+  fill: transparent;
+  transition: fill 0.4s cubic-bezier(0.47, 0, 0.745, 0.715) 3.8s;
+}
+
+.bean .img .svg-bean-33 {
+  fill: black;
+}
+
+html {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(1.2068965517vw + 12.1379310345px);
+  }
+}
+
+@media screen and (min-width: 1480px) {
+  html {
+    font-size: 30px;
+  }
+}
+
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+  display: flex;
+}
+
+button {
+  font-family: 'Barlow', sans-serif;
+}
+
+button > * {
+  pointer-events: none;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.title {
+  font-size: 22px;
+}
+
+@media screen and (min-width: 320px) {
+  .title {
+    font-size: calc(8.4482758621vw - 5.0344827586px);
+  }
+}
+
+@media screen and (min-width: 1480px) {
+  .title {
+    font-size: 120px;
+  }
+}
+
+.title {
+  padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 26.25rem) {
+  .title {
+    padding-bottom: calc(4.1025641026vw - 0.0769230769rem);
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .title {
+    padding-bottom: 3rem;
+  }
+}
+
+.paragraph {
+  line-height: 1.4;
+}
+
+.paragraph {
+  font-size: 14px;
+}
+
+@media screen and (min-width: 320px) {
+  .paragraph {
+    font-size: calc(0.3448275862vw + 12.8965517241px);
+  }
+}
+
+@media screen and (min-width: 1480px) {
+  .paragraph {
+    font-size: 18px;
+  }
+}
+
+.paragraph {
+  padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 26.25rem) {
+  .paragraph {
+    padding-bottom: calc(0.4102564103vw + 0.8923076923rem);
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .paragraph {
+    padding-bottom: 1.2rem;
+  }
+}
+
+.list-item {
+  text-align: right;
+}
+
+.list-item {
+  font-size: 14px;
+}
+
+@media screen and (min-width: 320px) {
+  .list-item {
+    font-size: calc(0.1724137931vw + 13.4482758621px);
+  }
+}
+
+@media screen and (min-width: 1480px) {
+  .list-item {
+    font-size: 16px;
+  }
+}
+
+.list-item:not(:last-of-type) {
+  margin-bottom: 0.8rem;
+}
+
+@media screen and (min-width: 26.25rem) {
+  .list-item:not(:last-of-type) {
+    margin-bottom: calc(0.4102564103vw + 0.6923076923rem);
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .list-item:not(:last-of-type) {
+    margin-bottom: 1rem;
+  }
+}
+
+.list-item-title {
+  font-weight: 600;
+}
+
+.list-item-title {
+  padding-bottom: 0.3rem;
+}
+
+@media screen and (min-width: 26.25rem) {
+  .list-item-title {
+    padding-bottom: calc(0.2051282051vw + 0.2461538462rem);
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .list-item-title {
+    padding-bottom: 0.4rem;
+  }
+}
+
+.list-item-subtitle {
+  color: #242424;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 10px 1fr 10px;
+  grid-gap: 0px;
+  max-width: 1380px;
+  margin: auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+.section {
+  grid-area: 2 / 2 / 3 / 3;
+  display: grid;
+  grid-template-columns: 5fr 5fr 3fr;
+  grid-gap: 15px;
+  height: 100%;
+}
+
+.section .img {
+  width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.section__title {
+  z-index: 1;
+  grid-area: 1 / 1 / 3 / 4;
+  align-self: center;
+}
+
+.section__content {
+  grid-area: 2 / 1 / 6 / 2;
+  align-self: center;
+}
+
+.section__pagination {
+  grid-area: 4 / 1 / 6 / 2;
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.section__img {
+  grid-area: 1 / 2 / 6 / 3;
+  align-self: flex-end;
+  max-height: calc(100vh - 20px);
+  overflow: hidden;
+}
+
+.section__list {
+  grid-area: 1 / 3 / 6 / 4;
+  align-self: flex-end;
+}
+
+.section:not(:last-of-type) {
+  display: none;
+  visibility: hidden;
+}
+
+@media (max-width: 814px) and (orientation: portrait) {
+  .section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .section__title {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+  .section__content {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  .section__pagination {
+    grid-area: 4 / 1 / 5 / 3;
+  }
+  .section__img {
+    grid-area: 1 / 2 / 3 / 3;
+  }
+  .section__list {
+    grid-area: 3 / 1 / 4 / 3;
+    display: flex;
+    justify-content: space-between;
+  }
+}

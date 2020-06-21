@@ -1,0 +1,965 @@
+.enable-js {
+  display: none;
+  font-size: .8em;
+  margin-bottom: .8em;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  background-color: #ef4d2f;
+  color: #fff;
+  padding: 10px;
+}
+:root.no-js {
+  .enable-js {
+    display: block;
+  }
+}
+
+.js {
+  [data-split-word] {
+    .char {
+      color: transparent;
+    }
+  }
+  [data-image] {
+    visibility: hidden;
+    .img {
+      visibility: hidden;
+    }
+  }
+  [data-translate-y] {
+    opacity: 0;
+  }
+  [data-translate-x] {
+    opacity: 0;
+  }
+  [data-fade-in] {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.active {
+  [data-split-word] {
+    .char {
+      display: inline-block;
+      color: transparent;
+      transform: translateY(-20px);
+      animation: words 200ms ease-out calc(var(--char-index) * 100ms) forwards;
+    }
+  }
+  [data-translate-y] {
+    animation: translateY .2s ease-in-out 0s forwards;
+  }
+  [data-translate-x] {
+    transform: translateX(-20px);
+    animation: translateX .6s ease-in-out 1.4s forwards;
+  }
+  [data-fade-in] {
+    animation: fadeIn .2s ease-in-out 3.3s forwards;
+    .btn {
+      path {
+        transition: d .4s ease-in-out 3.3s;
+      }
+      &--right path {
+        d: path("M 9 18 l 6 -6 l -6 -6");
+      }
+      &--left path {
+        d: path("M 15 18 l -6 -6 l 6 -6");
+      }
+    }
+  }
+  &.reverse {
+    [data-split-word] {
+      .char {
+        color: #242424;
+        transform: translateY(0);
+        animation: wordsReverse 200ms ease-out calc(var(--char-index-reverse) * 100ms) forwards;
+      }
+    }
+    [data-translate-y] {
+      opacity: 1;
+      transform: translateY(0);
+      animation: translateYReverse .2s ease-in-out 1.2s forwards;
+    }
+    [data-translate-x] {
+      opacity: 1;
+      transform: translateX(0);
+      animation: translateXReverse .4s ease-in-out 1.2s forwards;
+    }
+    [data-fade-in] {
+      animation: fadeIn .2s ease-in-out 0s reverse;
+    }
+  }
+}
+
+//Beethowen
+.beethowen.active {
+  [data-image] {
+    background-color: #333333;
+    visibility: hidden;
+    animation: fillBox .5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+    .img {
+      visibility: visible;
+    }
+  }
+
+  &.reverse {
+    [data-image] {
+      background-color: #333333;
+      visibility: visible;
+      animation: fillBoxReverse .7s cubic-bezier(0.85, 0.3, 0.37, 0.94) .5s forwards;
+      .img {
+        visibility: visible;
+        animation: fillBoxReverse .5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+      }
+    }
+  }
+}
+
+//Bean
+.bean.active {
+  [data-image] {
+    background-color: #333333;
+    visibility: hidden;
+    animation: fillBox .5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+    .img {
+      visibility: visible;
+    }
+  }
+
+  &.reverse {
+    [data-image] {
+      background-color: #333333;
+      visibility: visible;
+      animation: fillBoxReverse .7s cubic-bezier(0.85, 0.3, 0.37, 0.94) .5s forwards;
+      .img {
+        visibility: visible;
+        animation: fillBoxReverse .5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+      }
+    }
+  }
+}
+
+//Chopin
+.chopin.active {
+  [data-image] {
+    background-color: rgba(0,0,0,.1);
+    visibility: hidden;
+    animation: fillBox 1.1s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+    .img {
+      visibility: hidden;
+      animation: fillImg 1s cubic-bezier(0.85, 0.3, 0.37, 0.94) 1.3s forwards;
+    }
+  }
+
+  &.reverse {
+    [data-image] {
+      background-color: rgba(0,0,0,.1);
+      visibility: visible;
+      animation: fillBoxReverse .7s cubic-bezier(0.85, 0.3, 0.37, 0.94) .5s forwards;
+      .img {
+        visibility: visible;
+        animation: fillImgReverse .5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+      }
+    }
+  }
+}
+
+//Elvis
+.elvis.active {
+  [data-image] {
+    background-color: rgba(0,0,0,.1);
+    visibility: hidden;
+    animation: fillBox 1.1s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+    .img {
+      visibility: hidden;
+      animation: fillBox 1s cubic-bezier(0.85, 0.3, 0.37, 0.94) 1.3s forwards;
+    }
+  }
+
+  &.reverse {
+    [data-image] {
+      background-color: rgba(0,0,0,.1);
+      visibility: visible;
+      animation: fillBoxReverse .7s cubic-bezier(0.85, 0.3, 0.37, 0.94) .5s forwards;
+      .img {
+        visibility: visible;
+        animation: fillBoxReverse .5s cubic-bezier(0.85, 0.3, 0.37, 0.94) 0s forwards;
+      }
+    }
+  }
+}
+
+
+@keyframes fillBox {
+  0% {
+    visibility: visible;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+  100% {
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+@keyframes fillBoxReverse {
+  0% {
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  100% {
+    visibility: hidden;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+}
+@keyframes fillImg {
+  0% {
+    visibility: visible;
+    clip-path: circle(0% at 50% 20%);
+  }
+  100% {
+    visibility: visible;
+    clip-path: circle(70.7% at 50% 50%);
+  }
+}
+@keyframes fillImgReverse {
+  0% {
+    visibility: visible;
+    clip-path: circle(70.7% at 50% 50%);
+  }
+  100% {
+    visibility: hidden;
+    clip-path: circle(0% at 50% 20%);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@keyframes translateX {
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes translateXReverse {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+@keyframes circle {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+    opacity: 1;
+  }
+}
+@keyframes words {
+	0% {
+    color: transparent;
+    transform: translateY(-20px);
+  }
+	45% {
+    transform: scaleY(1.1);
+	}
+	80% {
+    transform: translateY(2px) scaleY(.97);
+	}
+  90% {
+    transform: scaleY(1.05);
+  }
+	96% {
+    transform: translateY(-1px) scaleY(.98);
+	}
+	100% {
+    color: #242424;
+    transform: translateY(0) scaleY(1);
+    text-shadow: 1px 1px 0 #fff;
+	}
+}
+@keyframes wordsReverse {
+	0% {
+    transform: translateY(0);
+  }
+	100% {
+    color: transparent;
+    transform: translateY(30px);
+    text-shadow: 0 0 0 transparent;
+	}
+}
+@keyframes translateY {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes translateYReverse {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+
+@media (min-width: 576px) {
+  [data-animation] [style*="--kf-delay"] {
+    animation-delay: calc(var(--kf-delay) * 1ms);
+  }
+}
+
+
+$cubic-bezier: cubic-bezier(0.47, 0, 0.745, 0.715);
+$duration-beethoven: .3s;
+$duration-bean: .4s;
+
+
+//START beethowen fade transition
+.svg-bet-1 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 0.9s;
+}
+.beethowen .img .svg-bet-1 {
+  fill: rgb(51, 51, 51);
+}
+.svg-bet-2 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1s;
+}
+.beethowen .img .svg-bet-2 {
+  fill: rgb(183, 57, 23);
+}
+.svg-bet-3 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.1s;
+}
+.beethowen .img .svg-bet-3 {
+  fill: rgb(183, 57, 23);
+}
+.svg-bet-4 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.2s;
+}
+.beethowen .img .svg-bet-4 {
+  fill: rgb(225, 109, 88);
+}
+.svg-bet-5 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.3s;
+}
+.beethowen .img .svg-bet-5 {
+  fill: rgb(225, 109, 88);
+}
+.svg-bet-6 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.4s;
+}
+.beethowen .img .svg-bet-6 {
+  fill: rgb(255, 255, 255);
+}
+.svg-bet-7 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.5s;
+}
+.beethowen .img .svg-bet-7 {
+  fill: rgb(77, 77, 77);
+}
+.svg-bet-8 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.6s;
+}
+.beethowen .img .svg-bet-8 {
+  fill: rgb(255, 255, 255);
+}
+.svg-bet-9 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.7s;
+}
+.beethowen .img .svg-bet-9 {
+  fill: rgb(232, 182, 166);
+}
+.svg-bet-10 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.8s;
+}
+.beethowen .img .svg-bet-10 {
+  fill: rgb(175, 120, 97);
+}
+.svg-bet-11 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 1.9s;
+}
+.beethowen .img .svg-bet-11 {
+  fill: rgb(232, 182, 166);
+}
+.svg-bet-12 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2s;
+}
+.beethowen .img .svg-bet-12 {
+  fill: rgb(201, 140, 117);
+}
+.svg-bet-13 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.1s;
+}
+.beethowen .img .svg-bet-13 {
+  fill: rgb(201, 140, 117);
+}
+.svg-bet-14 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.2s;
+}
+.beethowen .img .svg-bet-14 {
+  fill: rgb(221, 75, 68);
+}
+.svg-bet-15 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.3s;
+}
+.beethowen .img .svg-bet-15 {
+  fill: rgb(225, 98, 92);
+}
+.svg-bet-16 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.4s;
+}
+.beethowen .img .svg-bet-16 {
+  fill: rgb(156, 101, 79);
+}
+.svg-bet-17 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.5s;
+}
+.beethowen .img .svg-bet-17 {
+  fill: rgb(156, 101, 79);
+}
+.svg-bet-18 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.6s;
+}
+.beethowen .img .svg-bet-18 {
+  fill: rgb(0, 0, 0);
+}
+.svg-bet-19 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.7s;
+}
+.beethowen .img .svg-bet-19 {
+  fill: rgb(255, 255, 255);
+}
+.svg-bet-20 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.8s;
+}
+.beethowen .img .svg-bet-20 {
+  fill: rgb(80, 76, 96);
+}
+.svg-bet-21 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 2.9s;
+}
+.beethowen .img .svg-bet-21 {
+  fill: rgb(0, 0, 0);
+}
+.svg-bet-22 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3s;
+}
+.beethowen .img .svg-bet-22 {
+  fill: rgb(255, 255, 255);
+}
+.svg-bet-23 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.1s;
+}
+.beethowen .img .svg-bet-23 {
+  fill: rgb(80, 76, 96);
+}
+.svg-bet-24 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.2s;
+}
+.beethowen .img .svg-bet-24 {
+  fill: rgb(201, 140, 117);
+}
+.svg-bet-25 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.3s;
+}
+.beethowen .img .svg-bet-25 {
+  fill: rgb(77, 77, 77);
+}
+.svg-bet-26 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.4s;
+}
+.beethowen .img .svg-bet-26 {
+  fill: rgb(77, 77, 77);
+}
+.svg-bet-27 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.5s;
+}
+.beethowen .img .svg-bet-27 {
+  fill: rgb(156, 101, 79);
+}
+.svg-bet-28 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.6s;
+}
+.beethowen .img .svg-bet-28 {
+  fill: rgb(140, 79, 56);
+}
+.svg-bet-29 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.7s;
+}
+.beethowen .img .svg-bet-29 {
+  fill: rgb(130, 84, 66);
+}
+.svg-bet-30 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.8s;
+}
+.beethowen .img .svg-bet-30 {
+  fill: rgb(77, 77, 77);
+}
+.svg-bet-31 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 3.9s;
+}
+.beethowen .img .svg-bet-31 {
+  fill: rgb(225, 109, 88);
+}
+.svg-bet-32 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4s;
+}
+.beethowen .img .svg-bet-32 {
+  fill: rgb(183, 57, 23);
+}
+.svg-bet-33 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.1s;
+}
+.beethowen .img .svg-bet-33 {
+  fill: rgb(121, 35, 28);
+}
+.svg-bet-34 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.2s;
+}
+.beethowen .img .svg-bet-34 {
+  fill: rgb(225, 109, 88);
+}
+.svg-bet-35 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.3s;
+}
+.beethowen .img .svg-bet-35 {
+  fill: rgb(225, 109, 88);
+}
+.svg-bet-36 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.4s;
+}
+.beethowen .img .svg-bet-36 {
+  fill: rgb(102, 102, 102);
+}
+.svg-bet-37 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.5s;
+}
+.beethowen .img .svg-bet-37 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-38 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.6s;
+}
+.beethowen .img .svg-bet-38 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-39 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.7s;
+}
+.beethowen .img .svg-bet-39 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-40 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.8s;
+}
+.beethowen .img .svg-bet-40 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-41 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 4.9s;
+}
+.beethowen .img .svg-bet-41 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-42 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.0s;
+}
+.beethowen .img .svg-bet-42 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-43 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.1s;
+}
+.beethowen .img .svg-bet-43 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-44 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.2s;
+}
+.beethowen .img .svg-bet-44 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-45 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.3s;
+}
+.beethowen .img .svg-bet-45 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-46 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.4s;
+}
+.beethowen .img .svg-bet-46 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-47 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.5s;
+}
+.beethowen .img .svg-bet-47 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-48 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.6s;
+}
+.beethowen .img .svg-bet-48 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-49 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.7s;
+}
+.beethowen .img .svg-bet-49 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-50 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.8s;
+}
+.beethowen .img .svg-bet-50 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-51 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 5.9s;
+}
+.beethowen .img .svg-bet-51 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-52 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 6.0s;
+}
+.beethowen .img .svg-bet-52 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-53 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 6.1s;
+}
+.beethowen .img .svg-bet-53 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-54 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 6.2s;
+}
+.beethowen .img .svg-bet-54 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-55 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 6.3s;
+}
+.beethowen .img .svg-bet-55 {
+  fill: rgb(153, 153, 153);
+}
+.svg-bet-56 {
+  fill: transparent;
+  transition: fill $duration-beethoven $cubic-bezier 6.4s;
+}
+.beethowen .img .svg-bet-56 {
+  fill: rgb(153, 153, 153);
+}
+//END beethowen fade transition
+
+
+
+//START bean fade transition
+svg .svg-bean-1 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 0.6s;
+}
+.bean .img .svg-bean-1 {
+  fill: rgb(109, 97, 70);
+}
+svg .svg-bean-2 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 0.7s;
+}
+.bean .img .svg-bean-2 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-3 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 0.8s;
+}
+.bean .img .svg-bean-3 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-4 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 0.9s;
+}
+.bean .img .svg-bean-4 {
+  fill: rgb(223, 231, 233);
+}
+svg .svg-bean-5 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1s;
+}
+.bean .img .svg-bean-5 {
+  fill: rgb(121, 110, 118);
+}
+svg .svg-bean-6 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.1s;
+}
+.bean .img .svg-bean-6 {
+  fill: rgb(83, 75, 81);
+}
+svg .svg-bean-7 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.2s;
+}
+.bean .img .svg-bean-7 {
+  fill: rgb(87, 16, 20);
+}
+svg .svg-bean-8 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.3s;
+}
+.bean .img .svg-bean-8 {
+  fill: rgb(51, 9, 12);
+}
+svg .svg-bean-9 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.4s;
+}
+.bean .img .svg-bean-9 {
+  fill: rgb(189, 148, 123);
+}
+svg .svg-bean-10 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.5s;
+}
+.bean .img .svg-bean-10 {
+  fill: rgb(150, 94, 73);
+}
+svg .svg-bean-11 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.6s;
+}
+.bean .img .svg-bean-11 {
+  fill: rgb(155, 107, 78);
+}
+svg .svg-bean-12 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.7s;
+}
+.bean .img .svg-bean-12 {
+  fill: rgb(155, 107, 78);
+}
+svg .svg-bean-13 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.8s;
+}
+.bean .img .svg-bean-13 {
+  fill: rgb(155, 107, 78);
+}
+svg .svg-bean-14 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 1.9s;
+}
+.bean .img .svg-bean-14 {
+  fill: rgb(155, 107, 78);
+}
+svg .svg-bean-15 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2s;
+}
+.bean .img .svg-bean-15 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-16 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.1s;
+}
+.bean .img .svg-bean-16 {
+  fill: rgb(155, 107, 78);
+}
+svg .svg-bean-17 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.2s;
+}
+.bean .img .svg-bean-17 {
+  fill: rgb(155, 107, 78);
+}
+svg .svg-bean-18 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.3s;
+}
+.bean .img .svg-bean-18 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-19 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.4s;
+}
+.bean .img .svg-bean-19 {
+  fill: rgb(155, 107, 78);
+}
+svg .svg-bean-20 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.5s;
+}
+.bean .img .svg-bean-20 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-21 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.6s;
+}
+.bean .img .svg-bean-21 {
+  fill: rgb(177, 129, 100);
+}
+svg .svg-bean-22 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.7s;
+}
+.bean .img .svg-bean-22 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-23 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.8s;
+}
+.bean .img .svg-bean-23 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-24 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 2.9s;
+}
+.bean .img .svg-bean-24 {
+  fill: rgb(220, 205, 181);
+}
+svg .svg-bean-25 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.0s;
+}
+.bean .img .svg-bean-25 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-26 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.1s;
+}
+.bean .img .svg-bean-26 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-27 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.2s;
+}
+.bean .img .svg-bean-27 {
+  fill: rgb(220, 205, 181);
+}
+svg .svg-bean-28 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.3s;
+}
+.bean .img .svg-bean-28 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-29 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.4s;
+}
+.bean .img .svg-bean-29 {
+  fill: rgb(64, 58, 34);
+}
+svg .svg-bean-30 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.5s;
+}
+.bean .img .svg-bean-30 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-31 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.6s;
+}
+.bean .img .svg-bean-31 {
+  fill: rgb(64, 58, 34);
+}
+svg .svg-bean-32 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.7s;
+}
+.bean .img .svg-bean-32 {
+  fill: rgb(0, 0, 0);
+}
+svg .svg-bean-33 {
+  fill: transparent;
+  transition: fill $duration-bean $cubic-bezier 3.8s;
+}
+.bean .img .svg-bean-33 {
+  fill: rgb(0, 0, 0);
+}
+//END bean fade transition
