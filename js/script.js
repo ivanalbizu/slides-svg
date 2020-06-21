@@ -4,7 +4,6 @@ const ioHandler = (entries, self) => {
 
     if (entry.intersectionRatio > 0.7) {
       target.classList.add('active', target.getAttribute("data-animation"))
-      //self.unobserve(target);
     }
   }
 }
@@ -74,12 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
       const sectionCurrent = frame.closest('.section');
       sectionCurrent.classList.add('reverse');
+      const sectionTo = document.querySelector(frame.getAttribute('data-href'));
       setTimeout(() => {
         document.querySelectorAll('.section').forEach(article => {
           article.style.display = 'none';
           article.style.visibility = 'hidden';
         });
-        const sectionTo = document.querySelector(frame.getAttribute('data-href'));
         sectionTo.style.display = 'grid';
         sectionTo.style.visibility = 'visible';
         sectionCurrent.classList.remove('active', 'reverse', sectionCurrent.getAttribute('data-animation'));
